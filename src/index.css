@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Cinzel', serif;
+    --font-impact: 'Bebas Neue', sans-serif;
+    --font-teletext: 'Courier Prime', monospace;
+    --font-antique: 'Crimson Pro', serif;
+  }
+
+  body {
+    background-color: #030303;
+    color: #dfdbd4;
+    font-family: var(--font-teletext);
+    overflow-x: hidden;
+  }
+}
+
+.font-horror-title {
+  font-family: var(--font-display);
+}
+
+.font-horror-impact {
+  font-family: var(--font-impact);
+}
+
+.font-teletext {
+  font-family: var(--font-teletext);
+}
+
+.font-antique {
+  font-family: var(--font-antique);
+}
+
+/* CRT Scanlines Overlay */
+.crt-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.45) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* CRT Vignette / Tube Curve */
+.crt-vignette {
+  background: radial-gradient(circle at center, transparent 55%, rgba(0, 0, 0, 0.85) 95%, #000000 100%);
+  pointer-events: none;
+}
+
+/* Subtle VHS Scanline Bar */
+@keyframes vhsBar {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.vhs-scanbar {
+  animation: vhsBar 8s linear infinite;
+}
+
+/* Screen Flicker */
+@keyframes screenFlicker {
+  0% { opacity: 0.98; }
+  2% { opacity: 0.86; }
+  4% { opacity: 0.99; }
+  19% { opacity: 0.97; }
+  21% { opacity: 0.82; }
+  23% { opacity: 0.99; }
+  80% { opacity: 0.98; }
+  83% { opacity: 0.75; }
+  84% { opacity: 0.99; }
+  100% { opacity: 0.98; }
+}
+
+.animate-crt-flicker {
+  animation: screenFlicker 0.18s infinite;
+}
+
+/* Glitch Text Distortion */
+@keyframes glitchText {
+  0% {
+    text-shadow: 2px 0 #8b0000, -2px 0 #1a0033;
+    transform: translate(0, 0);
+  }
+  20% {
+    text-shadow: -2px 0 #8b0000, 2px 0 #1a0033;
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    text-shadow: 1px 0 #8b0000, -1px 0 #1a0033;
+    transform: translate(1px, -1px);
+  }
+  60% {
+    text-shadow: -1px 0 #8b0000, 1px 0 #1a0033;
+    transform: translate(0, 0);
+  }
+  80% {
+    text-shadow: 3px 0 #8b0000, -3px 0 #1a0033;
+    transform: translate(-2px, 0);
+  }
+  100% {
+    text-shadow: 2px 0 #8b0000, -2px 0 #1a0033;
+    transform: translate(0, 0);
+  }
+}
+
+.glitch-active {
+  animation: glitchText 0.35s steps(2, start) infinite;
+}
+
+/* Blood Glow */
+.blood-glow {
+  text-shadow: 0 0 10px rgba(220, 38, 38, 0.7), 0 0 25px rgba(153, 27, 27, 0.5), 0 0 50px rgba(127, 29, 29, 0.3);
+}
+
+.bone-glow {
+  text-shadow: 0 0 8px rgba(245, 237, 224, 0.4), 0 0 20px rgba(185, 28, 28, 0.6);
+}
+
+.candle-flame {
+  filter: drop-shadow(0 0 8px #f59e0b) drop-shadow(0 0 20px #ef4444);
+  animation: candleFlicker 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes candleFlicker {
+  0% { transform: scale(1) skewX(0deg); opacity: 0.95; }
+  25% { transform: scale(1.06, 0.94) skewX(1.5deg); opacity: 0.85; }
+  50% { transform: scale(0.96, 1.04) skewX(-1.5deg); opacity: 1; }
+  75% { transform: scale(1.02, 0.98) skewX(0.8deg); opacity: 0.88; }
+  100% { transform: scale(0.98, 1.02) skewX(-0.5deg); opacity: 0.95; }
+}
+
+/* Fog Drift Animation */
+@keyframes fogDriftSlow {
+  0% { transform: translateX(-5%); }
+  50% { transform: translateX(5%); }
+  100% { transform: translateX(-5%); }
+}
+
+.animate-fog-slow {
+  animation: fogDriftSlow 24s ease-in-out infinite;
+}
+
+@keyframes fogDriftFast {
+  0% { transform: translateX(8%); }
+  50% { transform: translateX(-8%); }
+  100% { transform: translateX(8%); }
+}
+
+.animate-fog-fast {
+  animation: fogDriftFast 16s ease-in-out infinite;
+}
+
+/* Noise Canvas / Static */
+.analog-noise-bg {
+  background-image: radial-gradient(circle at center, rgba(30, 0, 0, 0.35) 0%, rgba(5, 5, 5, 0.95) 75%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}

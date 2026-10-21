@@ -1,0 +1,6 @@
+{
+  "name": "A Noite do Caos - Convite de Halloween",
+  "description": "Transmissão analógica e convite interativo cinematográfico de terror para A Noite do Caos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
